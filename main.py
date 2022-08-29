@@ -7,15 +7,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exc
+from flask_gravatar import Gravatar
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Newcafes.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", 'sqlite:///Newcafes.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False, force_lower=False, use_ssl=False, base_url=None)
+
+##CONNECT TO DB
+
 
 @login_manager.user_loader
 def load_user(user_id):
