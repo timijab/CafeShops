@@ -125,16 +125,16 @@ def login():
         email = login_details.email.data
         password = login_details.password.data
         # # check here the criteria for searching the database.
-        logged_in_user = CoffeeUser.query.all()
-        for no in logged_in_user:
-            if email == no.user_email:
-                if check_password_hash(pwhash=no.user_password, password=password):
-                    login_user(no)
-                    return redirect(url_for('home'))
-
-            else:
-                flash("This email doesnt exist")
-                return redirect(url_for('login'))
+        logged_in_user = CoffeeUser.query.filter_by(user_email=email).first()
+        if not logged_in_user:
+            flash(" This email doesnt exist!!! ")
+            return redirect(url_for('login'))
+        elif not check_password_hash(pwash=logged_in_user.user_password, password=password):
+            flash(" You have entered a wrong password ")
+            return redirect(url_for('login'))
+        else:
+            login_user(logged_in_user)
+            return redirect(url_for('home'))
 
 @app.route("/logout")
 def logout():
@@ -150,13 +150,18 @@ def register():
         e_address = forms.email_address.data
         username = forms.name.data
         hash_and_salted_password = generate_password_hash(forms.password.data, method='pbkdf2:sha256', salt_length=8)
-        new_user = CoffeeUser(
-            name=username,
-            user_email=e_address,
-            user_password=hash_and_salted_password
-        )
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect( url_for("add"))
+        try:
+            new_user = CoffeeUser(
+                name=username,
+                user_email=e_address,
+                user_password=hash_and_salted_password
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            flash("You have been registered")
+            return redirect( url_for("login"))
+        except:    
+            return redirect(url_for('register'))
+        
 if __name__ == "__main__":
     app.run(debug=True)
