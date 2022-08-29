@@ -1,3 +1,4 @@
+import os
 from flask_wtf import FlaskForm
 from flask import Flask, request, render_template, flash, redirect, url_for
 from wtforms import form, PasswordField, IntegerField, StringField, SubmitField, EmailField
