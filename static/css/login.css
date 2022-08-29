@@ -1,0 +1,28 @@
+.form{
+    width: 50%;
+    text-center: center;
+    padding-top: 5%;
+    margin-left: 25%;
+
+}
+.control-label{
+    font-weight: 700;
+    padding-top: 30px;
+}
+.form-control{
+    background-color: white;
+}
+
+
+.form-control:focus {
+    background:white;
+}
+
+#submit{
+    margin-top: 30px;
+    text-align: center;
+    border-width: revert;
+    border-color: beige;
+    margin-left: 45%;
+    font-weight:700;
+}

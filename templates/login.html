@@ -1,0 +1,10 @@
+{% include 'header.html' %}
+<meta name=”viewport” content=”width=device-width, initial-scale=1.0">
+{% import "bootstrap/wtf.html"  as wtf %}
+
+
+<link href="{{ url_for( 'static', filename='css/login.css') }}" rel="stylesheet" type="text/css">
+
+{{ wtf.quick_form(form) }}
+
+{% include 'footer.html' %}

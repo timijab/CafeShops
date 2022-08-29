@@ -1,0 +1,22 @@
+.form{
+    width: 50%;
+    text-center: center;
+    padding-top: 5%;
+    margin-left: 25%;
+
+}
+.form-control {
+    background-color: white;
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+#submit{
+    border-color: cornsilk;
+    border-width: thick;
+}
+.form-control:focus {
+    background:white;
+}
+.control-label{
+    font-weight: 700;
+}

@@ -1,0 +1,23 @@
+.form-control{
+    background-color: white;
+    padding-top:10px;
+    padding-down:10px;
+}
+.form{
+    width: 50%;
+    margin-left: 25%;
+
+
+}
+.form-control:focus {
+    background:white;
+
+}
+#submit{
+     margin-top:30px;
+     border-width: thick;
+     border-color: darkblue;
+}
+.control-label{
+    padding-top: 5%;
+}
