@@ -159,7 +159,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             flash("You have been registered")
-            return redirect( url_for("login"))
+            return redirect( url_for("home"))
         except:    
             return redirect(url_for('register'))
         
