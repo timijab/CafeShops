@@ -125,16 +125,19 @@ def login():
         email = login_details.email.data
         password = login_details.password.data
         # # check here the criteria for searching the database.
-        logged_in_user = CoffeeUser.query.filter_by(user_email=email).first()
-        if not logged_in_user:
-            flash(" This email doesnt exist!!! ")
-            return redirect(url_for('login'))
-        elif not check_password_hash(pwash=logged_in_user.user_password, password=password):
-            flash(" You have entered a wrong password ")
-            return redirect(url_for('login'))
-        else:
-            login_user(logged_in_user)
-            return redirect(url_for('home'))
+#         logged_in_user = CoffeeUser.query.filter_by(user_email=email).first()
+        log_in_user = CoffeeUser.query.all()
+        for user in log_in_user:
+            if user.user_email == email and check_password_hash(pwash=user.user_password, password=password):
+                login_user(user)
+                return redirect(url_for('home'))
+            elif user.user_email == email and not check_password_hash(pwash=user.user_password, password=password):
+                flash(" You have entered a wrong password ")
+                return redirect(url_for('login'))
+            elif user.user_email != email:
+                flash(" This email doesnt exist!!! ")
+                return redirect(url_for('login'))
+                
 
 @app.route("/logout")
 def logout():
