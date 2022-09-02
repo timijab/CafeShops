@@ -20,12 +20,6 @@
           <th scope="col"> Map url </th>
           <th scope="col"> Cafe picture </th>
           <th scope="col"> Location </th>
-          <th scope="col"> Sockets </th>
-          <th scope="col"> Toilet </th>
-          <th scope="col"> Wifi </th>
-         <th scope="col"> Call Reception </th>
-         <th scope="col"> Seats </th>
-         <th scope="col"> Coffee Price </th>
         </tr>
       </thead>
       <tbody>
@@ -36,13 +30,6 @@
             <td><button class="btn btn-light" onclick="window.open('{{caf.map_url}}')"> Location </button></td>
           <td><img class="cafe_img" src="{{ caf.image_url }}"></td>
           <td>{{caf.location}}</td>
-          <td>{{ caf.has_socket }}</td>
-          <td>{{ caf.has_toilet }}</td>
-          <td>{{ caf.has_wifi }}</td>
-          <td>{{ caf.can_take_calls }}</td>
-          <td>{{ caf.seats }}</td>
-          <td>{{ caf.coffee_price }}</td>
-
         </tr>
         {% endfor %}
 
